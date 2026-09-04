@@ -17,21 +17,21 @@ documented, testable algorithm, and reports on it like a real tool would.
 
 ## What's working right now
 
-- ✅ Live packet capture via `scapy`
-- ✅ **Port scan detection** — sliding-window, per-source-IP distinct-port
+-  Live packet capture via `scapy`
+-  **Port scan detection** — sliding-window, per-source-IP distinct-port
   tracking ([`detectors/port_scan.py`](detectors/port_scan.py))
-- ✅ **SYN flood detection** — sliding-window SYN rate tracking
+-  **SYN flood detection** — sliding-window SYN rate tracking
   ([`detectors/syn_flood.py`](detectors/syn_flood.py))
-- ✅ Alert persistence to SQLite + console output + optional webhook
-- ✅ Basic Flask dashboard showing the live alert feed
-- ✅ Unit tests for both finished detectors (`pytest tests/`)
+-  Alert persistence to SQLite + console output + optional webhook
+- Basic Flask dashboard showing the live alert feed
+- Unit tests for both finished detectors (`pytest tests/`)
 
 ## What's still in progress
 
-- 🚧 **ARP spoof detection** — designed, not implemented (`detectors/arp_spoof.py`)
-- 🚧 **DNS tunneling detection** — entropy-based scoring logic is done and
+- **ARP spoof detection** — designed, not implemented (`detectors/arp_spoof.py`)
+- **DNS tunneling detection** — entropy-based scoring logic is done and
   tested, but not yet wired into the live sniffer (`detectors/dns_tunnel.py`)
-- 🚧 **Dashboard charts** — alerts-over-time / by-detector graphs (currently
+- **Dashboard charts** — alerts-over-time / by-detector graphs (currently
   just a table)
 
 See [TODO.md](TODO.md) for the full breakdown and reasoning behind what's
