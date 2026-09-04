@@ -1,0 +1,30 @@
+# NetGuard configuration
+# Tune these thresholds to your own network before running.
+
+interface: "eth0"          # network interface to sniff on (use `ip a` to list yours)
+
+port_scan_detector:
+  enabled: true
+  window_seconds: 10        # sliding window to evaluate
+  unique_port_threshold: 15 # flag a source IP hitting >= N distinct ports in the window
+
+syn_flood_detector:
+  enabled: true
+  window_seconds: 5
+  syn_threshold: 100         # flag if a single source sends >= N SYN packets in window
+
+arp_spoof_detector:
+  enabled: false             # TODO: not implemented yet, see detectors/arp_spoof.py
+  gratuitous_arp_alert: true
+
+dns_tunnel_detector:
+  enabled: false             # TODO: in progress, see detectors/dns_tunnel.py
+  max_query_length: 60
+  entropy_threshold: 3.5
+
+logging:
+  sqlite_path: "data/netguard.db"
+  console_level: "INFO"
+
+alerting:
+  webhook_url: ""            # optional Slack/Discord webhook, leave blank to disable

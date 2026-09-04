@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>NetGuard Dashboard</title>
+    <style>
+        body { font-family: system-ui, sans-serif; margin: 2rem; background: #0f1117; color: #e6e6e6; }
+        h1 { color: #4fd1c5; }
+        table { border-collapse: collapse; width: 100%; margin-top: 1rem; }
+        th, td { text-align: left; padding: 0.5rem 0.75rem; border-bottom: 1px solid #2a2d3a; }
+        th { color: #9aa0ac; text-transform: uppercase; font-size: 0.75rem; }
+        .HIGH { color: #ff6b6b; font-weight: bold; }
+        .MEDIUM { color: #ffd166; }
+        .LOW { color: #4fd1c5; }
+        .todo-box { border: 1px dashed #555; padding: 1rem; margin-top: 2rem; color: #888; }
+    </style>
+</head>
+<body>
+    <h1>NetGuard — Live Alert Feed</h1>
+    <p>Detector counts: {{ counts }}</p>
+
+    <table>
+        <thead>
+            <tr><th>Time (UTC)</th><th>Detector</th><th>Source IP</th><th>Severity</th><th>Message</th></tr>
+        </thead>
+        <tbody>
+            {% for a in alerts %}
+            <tr>
+                <td>{{ a.timestamp }}</td>
+                <td>{{ a.detector }}</td>
+                <td>{{ a.source_ip }}</td>
+                <td class="{{ a.severity }}">{{ a.severity }}</td>
+                <td>{{ a.message }}</td>
+            </tr>
+            {% else %}
+            <tr><td colspan="5">No alerts yet — run sniffer.py to start collecting.</td></tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    <div class="todo-box">
+        TODO: alerts-over-time and alerts-by-detector charts (Chart.js) go here.
+        Table view above is the working baseline — charts tracked in TODO.md #5.
+    </div>
+</body>
+</html>
